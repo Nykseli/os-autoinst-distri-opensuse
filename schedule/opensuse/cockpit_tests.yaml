@@ -1,0 +1,11 @@
+name: cockpit-tests
+description: Test for a individual cockpit repo
+schedule:
+  - installation/bootloader_start
+  - boot/boot_to_desktop
+  - cockpit/setup_repo
+  - cockpit/setup_vm
+  - cockpit/run_check
+
+# Full PoC test suite
+# - cockpit/run_testsuite
