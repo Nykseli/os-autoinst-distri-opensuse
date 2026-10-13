@@ -3,9 +3,6 @@ description: Test for a individual cockpit repo
 schedule:
   - installation/bootloader_start
   - boot/boot_to_desktop
+  - console/prepare_test_data
   - cockpit/setup_repo
-  - cockpit/setup_vm
-  - cockpit/run_check
-
-# Full PoC test suite
-# - cockpit/run_testsuite
+  - cockpit/cockpit_ci

@@ -6,6 +6,11 @@ use utils qw(clear_console zypper_call);
 
 sub run {
     select_serial_terminal;
+    install_package('"pkgconfig(gio-unix-2.0)"');
+    install_package('"pkgconfig(json-glib-1.0)"');
+    install_package('"pkgconfig(polkit-agent-1)"');
+    install_package('systemd-devel');
+    install_package('"rubygem(asciidoctor)"');
 
     install_package('gettext-runtime');
     install_package('nodejs-default');
@@ -45,7 +50,13 @@ sub run {
     install_package('strace');
     install_package('tar');
     install_package('virt-install');
-
+    install_package('autoconf');
+    install_package('automake');
+    install_package('"pkgconfig(gio-unix-2.0)"');
+    install_package('"pkgconfig(json-glib-1.0)"');
+    install_package('"pkgconfig(polkit-agent-1)"');
+    install_package('systemd-devel');
+    install_package('"rubygem(asciidoctor)"');
 }
 
 sub test_flags {

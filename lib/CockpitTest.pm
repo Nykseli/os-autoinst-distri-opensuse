@@ -12,6 +12,7 @@ sub new {
     my $repo_os = get_var('COCKPIT_REPO_OS', 'opensuse-tumbleweed');
     my ($project_name) = $repo_url =~ /\/([A-z0-9-_]+)(?:\.git)?$/;
     die 'Project name could not be extracted from repository url' unless $project_name;
+    my $test_script = 'test/run';
 
     my $self = {
         project_root => '/var/tmp/cockpit-test-suite',
@@ -19,6 +20,7 @@ sub new {
         repo_url => $repo_url,
         repo_branch => $repo_branch,
         repo_os => $repo_os,
+        test_script => $test_script,
     };
     # Bless the reference as an object of the class
     bless $self, $class;
@@ -38,6 +40,10 @@ sub test_start {
         assert_script_run "cd $self->{project_root}";
     } else {
         assert_script_run "cd $self->{project_root}/$self->{project_name}";
+    }
+
+    if (script_run("test -e $self->{test_script}") != 0) {
+        $self->{test_script} = '.github-ci/run';
     }
 }
 

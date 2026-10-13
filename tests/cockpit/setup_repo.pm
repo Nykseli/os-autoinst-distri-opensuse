@@ -10,10 +10,10 @@ sub run {
     my $test = CockpitTest->new();
     $test->test_start(1);
 
-    assert_script_run "git clone --depth=1 $test->{repo_url}";
+    assert_script_run "git clone $test->{repo_url}";
     assert_script_run "cd $test->{project_name}";
-    # 15 minute timeout should be plenty of time for all the npm shenanigans
-    assert_script_run('make', timeout => 1800);
+    assert_script_run "git fetch --tags";
+    assert_script_run "git checkout $test->{repo_branch}";
 
     $test->test_end();
 }
